@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Persist } from 'react-persist'
 import MoodItem from './MoodItem'
 
 const Container = styled.div`
@@ -40,21 +41,67 @@ const Credit = styled.h6`
 `
 
 class App extends Component {
+  state = {
+    upset: 0,
+    angry: 0,
+    sad: 0,
+    unsure: 0,
+    happy: 0,
+    amazing: 0
+  }
+
+  addMood(mood) {
+    this.setState(state => ({
+      [mood]: state[mood] + 1
+    }))
+  }
+
   render() {
     return (
       <Container>
+        <Persist
+          name="state"
+          data={this.state}
+          debounce={0}
+          onMount={data => this.setState(data)}
+        />
+
         <Header>
           <Title>How are you feeling?</Title>
         </Header>
 
         <MoodContainer>
           <MoodList>
-            <MoodItem icon="😭" label="Upset" />
-            <MoodItem icon="😠" label="Angry" />
-            <MoodItem icon="🙁" label="Sad" />
-            <MoodItem icon="😐" label="Unsure" />
-            <MoodItem icon="😄" label="Happy" />
-            <MoodItem icon="😁" label="Amazing" />
+            <MoodItem
+              icon="😭"
+              label="Upset"
+              onClick={() => this.addMood('upset')}
+            />
+            <MoodItem
+              icon="😠"
+              label="Angry"
+              onClick={() => this.addMood('angry')}
+            />
+            <MoodItem
+              icon="🙁"
+              label="Sad"
+              onClick={() => this.addMood('sad')}
+            />
+            <MoodItem
+              icon="😐"
+              label="Unsure"
+              onClick={() => this.addMood('unsure')}
+            />
+            <MoodItem
+              icon="😄"
+              label="Happy"
+              onClick={() => this.addMood('happy')}
+            />
+            <MoodItem
+              icon="😁"
+              label="Amazing"
+              onClick={() => this.addMood('amazing')}
+            />
           </MoodList>
         </MoodContainer>
 
