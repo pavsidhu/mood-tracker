@@ -105,7 +105,13 @@ class App extends Component {
           </MoodList>
         </MoodContainer>
 
-        <Credit>Made With ❤️ by Pav Sidhu</Credit>
+        <Credit>
+          Made With{' '}
+          <span role="img" aria-label="heart">
+            ❤️
+          </span>{' '}
+          by Pav Sidhu
+        </Credit>
       </Container>
     )
   }
