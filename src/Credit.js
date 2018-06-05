@@ -5,7 +5,7 @@ const Container = styled.h6`
   font-size: 1.6em;
   text-align: center;
   font-weight: normal;
-  margin-bottom: 16px;
+  margin: 16px 0;
 `
 
 const Credit = props => (
