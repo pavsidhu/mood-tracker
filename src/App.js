@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Persist } from 'react-persist'
-import MoodItem from './MoodItem'
+import MoodList from './MoodList'
+import Stats from './Stats'
 import Credit from './Credit'
 
 const Container = styled.div`
@@ -21,89 +22,99 @@ const Title = styled.h1`
   font-size: 3.2em;
 `
 
-const MoodContainer = styled.div`
+const Contents = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+const Button = styled.div`
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  font-size: 1.6em;
+  width: 200px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-`
+  align-items: center;
+  padding: 16px 0;
+  margin-top: 32px;
+  transition: transform 140ms;
+  cursor: pointer;
+  user-select: none;
 
-const MoodList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 24px;
-`
-
-const Credit = styled.h6`
-  font-size: 1.6em;
-  text-align: center;
-  font-weight: normal;
-  margin-bottom: 16px;
+  &:active {
+    transform: scale(0.95) translateY(2px);
+  }
 `
 
 class App extends Component {
-  state = {
-    upset: 0,
-    angry: 0,
-    sad: 0,
-    unsure: 0,
-    happy: 0,
-    amazing: 0
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      moods: {
+        upset: 0,
+        angry: 0,
+        sad: 0,
+        unsure: 0,
+        happy: 0,
+        amazing: 0
+      },
+      isViewingStats: false
+    }
+
+    this.addMood = this.addMood.bind(this)
   }
 
-  addMood(mood) {
+  addMood(m) {
+    const mood = m.toLowerCase()
+
     this.setState(state => ({
-      [mood]: state[mood] + 1
+      ...state,
+      moods: {
+        ...state.moods,
+        [mood]: state.moods[mood] + 1
+      }
+    }))
+
+    this.toggleStateView()
+  }
+
+  toggleStateView() {
+    this.setState(state => ({
+      ...state,
+      isViewingStats: !state.isViewingStats
     }))
   }
 
   render() {
+    const { isViewingStats, moods } = this.state
+
     return (
       <Container>
         <Persist
           name="state"
           data={this.state}
           debounce={0}
-          onMount={data => this.setState(data)}
+          onMount={data => data !== null && this.setState(data)}
         />
 
         <Header>
           <Title>How are you feeling?</Title>
         </Header>
 
-        <MoodContainer>
-          <MoodList>
-            <MoodItem
-              icon="😭"
-              label="Upset"
-              onClick={() => this.addMood('upset')}
-            />
-            <MoodItem
-              icon="😠"
-              label="Angry"
-              onClick={() => this.addMood('angry')}
-            />
-            <MoodItem
-              icon="🙁"
-              label="Sad"
-              onClick={() => this.addMood('sad')}
-            />
-            <MoodItem
-              icon="😐"
-              label="Unsure"
-              onClick={() => this.addMood('unsure')}
-            />
-            <MoodItem
-              icon="😄"
-              label="Happy"
-              onClick={() => this.addMood('happy')}
-            />
-            <MoodItem
-              icon="😁"
-              label="Amazing"
-              onClick={() => this.addMood('amazing')}
-            />
-          </MoodList>
-        </MoodContainer>
+        <Contents>
+          {isViewingStats ? (
+            <Stats moods={moods} />
+          ) : (
+            <MoodList addMood={this.addMood} />
+          )}
+
+          <Button onClick={() => this.toggleStateView()}>
+            {isViewingStats ? 'Hide Stats' : 'View Stats'}
+          </Button>
+        </Contents>
 
         <Credit />
       </Container>
