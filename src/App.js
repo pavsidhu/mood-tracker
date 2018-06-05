@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Persist } from 'react-persist'
 import MoodList from './MoodList'
 import Stats from './Stats'
-import Credit from './Credit'
 
 const Container = styled.div`
   height: 100vh;
@@ -38,7 +37,7 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   padding: 16px 0;
-  margin-top: 32px;
+  margin: 32px 0;
   transition: transform 140ms;
   cursor: pointer;
   user-select: none;
@@ -115,8 +114,6 @@ class App extends Component {
             {isViewingStats ? 'Hide Stats' : 'View Stats'}
           </Button>
         </Contents>
-
-        <Credit />
       </Container>
     )
   }
