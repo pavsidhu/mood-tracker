@@ -46,42 +46,54 @@ const Stats = ({ moods }) => {
         percentage={moods.upset / total}
         backgroundColor="#c9f7ff"
       >
-        😭
+        <span role="img" aria-label="upset">
+          😭
+        </span>
       </Item>
       <Item
         label="Angry"
         percentage={moods.angry / total}
         backgroundColor="#ff8c8c"
       >
-        😠
+        <span role="img" aria-label="angry">
+          😠
+        </span>
       </Item>
       <Item
         label="Sad"
         percentage={moods.sad / total}
         backgroundColor="#e2a5e8"
       >
-        🙁
+        <span role="img" aria-label="sad">
+          🙁
+        </span>
       </Item>
       <Item
         label="Unsure"
         percentage={moods.unsure / total}
         backgroundColor="#f9ed91"
       >
-        😐
+        <span role="img" aria-label="unsure">
+          😐
+        </span>
       </Item>
       <Item
         label="Happy"
         percentage={moods.happy / total}
         backgroundColor="#ffc07c"
       >
-        😄
+        <span role="img" aria-label="happy">
+          😄
+        </span>
       </Item>
       <Item
         label="Amazing"
         percentage={moods.amazing / total}
         backgroundColor="#bcffa7"
       >
-        😁
+        <span role="img" aria-label="amazing">
+          😁
+        </span>
       </Item>
     </Container>
   )
