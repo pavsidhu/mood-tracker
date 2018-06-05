@@ -7,7 +7,7 @@ import Stats from './Stats'
 const Container = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 1fr auto;
+  grid-template-rows: 1fr 1fr;
 `
 
 const Header = styled.div`
