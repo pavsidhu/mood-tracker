@@ -14,7 +14,6 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fefefe;
 `
 
 const Title = styled.h1`

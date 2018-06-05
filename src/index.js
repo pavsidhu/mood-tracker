@@ -15,6 +15,13 @@ injectGlobal`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
       Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-size: 62.5%;
+    background: repeating-linear-gradient(
+      -45deg,
+      #fefefe,
+      #fefefe 10px,
+      #fcfcfc 10px,
+      #fcfcfc 20px
+    );
 }
 `
 
