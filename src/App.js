@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Persist } from 'react-persist'
 import MoodItem from './MoodItem'
+import Credit from './Credit'
 
 const Container = styled.div`
   height: 100vh;
@@ -105,13 +106,7 @@ class App extends Component {
           </MoodList>
         </MoodContainer>
 
-        <Credit>
-          Made With{' '}
-          <span role="img" aria-label="heart">
-            ❤️
-          </span>{' '}
-          by Pav Sidhu
-        </Credit>
+        <Credit />
       </Container>
     )
   }
